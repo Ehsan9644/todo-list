@@ -1,0 +1,28 @@
+
+*{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+
+}
+    nav {
+      background-color: coral;
+      overflow: hidden;
+      padding-bottom:1rem;
+     padding-top:1rem;
+      padding-left:2rem;
+    }
+
+    .container a {
+        margin:1rem;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    
+    }
+
+    .container a:hover {
+      background-color: #ddd;
+      color: black;
+    }
