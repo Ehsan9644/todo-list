@@ -8,8 +8,9 @@ fetch("https://dummyjson.com/todos")
     const todoContainer = document.getElementById("todo-container");
 
     // Loop through the todosData array and create HTML elements for each todo item
-    todosData.forEach((todo) => {
+     todosData.forEach((todo) => {
       // Create a div element for the todo item
+      // console.log(todo);
       const todoItemDiv = document.createElement("div");
       todoItemDiv.classList.add("todo-item");
 
@@ -37,7 +38,7 @@ fetch("https://dummyjson.com/todos")
 
       // Append the text box and buttons to the todo item div
       todoItemDiv.appendChild(todoTextBox);
-      todoItemDiv.appendChild(editButton);
+      todoItemDiv.appendChild(Button);
       todoItemDiv.appendChild(deleteButton);
 
       // Append the todo item div to the container

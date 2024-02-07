@@ -1,4 +1,5 @@
 // Retrieve the user ID from localStorage
+
 fetch("https://dummyjson.com/auth/login", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
@@ -10,7 +11,6 @@ fetch("https://dummyjson.com/auth/login", {
 })
   .then((res) => res.json())
   .then(console.log);
-
 
 const userId = localStorage.getItem("userId");
 
@@ -44,14 +44,49 @@ if (userId) {
         todoTextBox.value = todo.todo;
         todoTextBox.readOnly = true; // Make it read-only
 
-        // Create a button to edit the todo
-        const editButton = document.createElement("button");
-        editButton.innerHTML = '<i class="fas fa-edit"></i>';
-        editButton.addEventListener("click", function () {
-          
-         
-        }
-        );
+        // Create a button to update the todo status
+        const updateButton = document.createElement("button");
+        updateButton.innerHTML = '<i class="fas fa-check"></i>';
+        updateButton.addEventListener("click", function () {
+          // Get the todo ID associated with the todo item
+          const todoId = todo.id; // Assuming todo object has an 'id' property
+          console.log("todoid" , todoId);
+          // Determine the updated status (toggle between completed and not completed)
+          const updatedStatus = !todo.completed;
+
+          // Send a PUT request to the API endpoint to update the todo status
+          fetch(`https://dummyjson.com/todos/${todoId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ completed: updatedStatus }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                
+                // If the update is successful, toggle the completed status of the todo
+                todo.completed = updatedStatus;
+
+                // Update the UI to reflect the new status (e.g., change color or styling)
+                if (updatedStatus) {
+                  todoItemDiv.classList.add("completed");
+                } else {
+                  todoItemDiv.classList.remove("completed");
+                }
+              } else {
+                // Handle errors if update fails
+                console.error(
+                  "Failed to update todo status:",
+                  response.statusText
+                );
+              }
+            })
+            .catch((error) => {
+              // Handle any network or fetch-related errors
+              console.error("Error updating todo status:", error);
+            });
+        });
 
         // Create a button to delete the todo
         const deleteButton = document.createElement("button");
@@ -82,10 +117,9 @@ if (userId) {
             });
         });
 
-
         // Append the text box and buttons to the todo item div
         todoItemDiv.appendChild(todoTextBox);
-        todoItemDiv.appendChild(editButton);
+        todoItemDiv.appendChild(updateButton);
         todoItemDiv.appendChild(deleteButton);
 
         // Append the todo item div to the container
@@ -99,8 +133,6 @@ if (userId) {
 } else {
   console.log("User ID not found in localStorage");
 }
-
-
 
 //logout function
 document.getElementById("logout").addEventListener("click", function () {
