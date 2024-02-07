@@ -1,5 +1,6 @@
 .input{
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:space-between;
     margin-top:5rem;
@@ -8,7 +9,7 @@
 
 }
 .input input{
-    flex:1;
+   
     border:none;
     outline:none;
     background:transparent;
@@ -16,6 +17,7 @@
     font weight:1rem;
     background: #edeef0;
     border-radius:3rem;
+    
     
 }
 .input button{
@@ -31,38 +33,21 @@
 
 .input button:hover{
 background:#ff5530;
-}.input{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:5rem;
-    margin-left:5rem;
-    margin-right:5rem;
-
-}
-.input input{
-    flex:1;
-    border:none;
-    outline:none;
-    background:transparent;
-    padding:1rem;
-    font weight:1rem;
-    background: #edeef0;
-    border-radius:3rem;
-    
-}
-.input button{
-    border:none;
-    outline:none;
-    padding:1rem 2rem;
-    background:#ff5945;
-    color:#fff;
-    font-size:1rem;
-    cursor:pointer;
-    border-radius:40px;
 }
 
-.input button:hover{
-background:#ff5530;
-} 
+.todo-item {
+    width:90%;
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 10px; 
+}
 
+.todo-item input[type="text"] {
+  flex:1 ; 
+  margin-right: 10px;
+
+}
+.todo-item button {
+  flex-shrink: 0; 
+  margin-right: 5px; 
+}
