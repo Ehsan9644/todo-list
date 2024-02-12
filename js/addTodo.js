@@ -38,6 +38,8 @@ function showTask(){
     listContainer.innerHTML = localStorage.getItem("data");
 }
 showTask();
+const data = localStorage.getItem("data");
+console.log(data)
 
 // const userId = localStorage.getItem("userId");
 
