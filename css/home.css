@@ -1,4 +1,4 @@
-
+/* 
 *{
     font-family: Arial, sans-serif;
     margin:0;
@@ -98,4 +98,10 @@ background:#ff5530;
 .todo-item button {
   flex-shrink: 0; 
   margin-right: 5px; 
+} */
+
+.heading{
+
+  padding:2rem;
+  color:#ff5530;
 }

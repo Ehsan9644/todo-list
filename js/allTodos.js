@@ -19,26 +19,9 @@ fetch("https://dummyjson.com/todos")
       todoTextBox.value = todo.todo;
       todoTextBox.readOnly = true; // Make it read-only
 
-      // // Create a button to edit the todo
-      // const editButton = document.createElement("button");
-      // editButton.innerHTML = '<i class="fas fa-edit"></i>';
-      // editButton.addEventListener("click", function () {
-      //   // Enable editing of the text box
-      //   todoTextBox.readOnly = false;
-      // });
-
-      // // Create a button to delete the todo
-      // const deleteButton = document.createElement("button");
-      // deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-      // deleteButton.addEventListener("click", function () {
-      //   // Remove the todo item
-      //   todoItemDiv.remove();
-      // });
-
       // Append the text box and buttons to the todo item div
       todoItemDiv.appendChild(todoTextBox);
-      // todoItemDiv.appendChild(editButton);
-      // todoItemDiv.appendChild(deleteButton);
+    
 
       // Return the todo item div
       return todoItemDiv;
