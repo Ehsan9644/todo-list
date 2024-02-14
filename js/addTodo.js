@@ -1,8 +1,4 @@
 
-
-
-
-
 const todoInput = document.getElementById("todoInput");
 const listContainer = document.getElementById("list-container");
 const userId = localStorage.getItem("userId");
@@ -11,37 +7,79 @@ const userId = localStorage.getItem("userId");
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 function addTodo() {
-  const todoText = todoInput.value.trim();
-  if (todoText === "") {
-    alert("You must write something");
-    return;
-  }
 
-  // Create a todo object
-  const todo = {
-    todo: todoText,
+fetch("https://dummyjson.com/todos/add", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    todo: "Use DummyJSON in the project",
     completed: false,
-    userId: userId,
-  };
+    userId: 5,
+  }),
+})
+  .then((response) => {
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error("Failed to add todo.");
+    }
+    // Return the response to the next then block
+    return response;
+  })
+  .then((data) => {
+    // Log the data received from the server
+    console.log(data);
+    // Access the status of the response
+    const status = data.status;
+    console.log("Status:" + status);
 
-  // Add todo to the array
-  todos.push(todo);
+    if (status == 200) {
+      const todoText = todoInput.value.trim();
+      if (todoText === "") {
+        alert("You must write something");
+        return;
+      }
 
-  saveData();
+      // Create a todo object
+      const todo = {
+        todo: todoText,
+        completed: false,
+        userId: userId,
+      };
 
-  todoInput.value = "";
-}
+      // Add todo to the array
+      todos.push(todo);
 
-function saveData() {
-  localStorage.setItem("todos", JSON.stringify(todos));
-}
+      saveData();
 
-// Show todos on the webpage
-function showTasks() {
-  listContainer.innerHTML = ""; // Clear the list before rendering
-  todos.forEach((todo) => {
-    renderTodo(todo);
+      todoInput.value = "";
+    } 
+    else {
+       alert("Bad Request");
+    }
+    function saveData() {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
+ 
+  })
+  
+  .catch((error) => {
+    // Handle any errors that occurred during the fetch
+    console.error("Error:", error);
+   
   });
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
 }
 
-showTasks();

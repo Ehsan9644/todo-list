@@ -63,7 +63,7 @@ if (userId) {
     .then((response) => response.json())
     .then((data) => {
       const todosDataFromAPI = data.todos;
-
+console.log(todosDataFromAPI);
       // Filter out todos from the API that are already present in local storage
       const filteredTodos = todosDataFromAPI.filter((todoFromAPI) => {
         return !todos.find((todo) => todo.todo === todoFromAPI.todo);
