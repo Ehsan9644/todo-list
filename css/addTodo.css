@@ -67,6 +67,21 @@ background:#ff5530;
 background:#ff5530;
 }
 
+#list-container{
+    padding-left:5rem;
+    padding-right:5rem;
+    /* background-color:silver; */
+}
+li {
+  padding: 10px;
+  margin: 5px;
+  background-color: #fff;
+  border-radius:15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Adjust shadow properties as needed */
+margin:1.5rem;
+}
+
+
 ul li {
     list-style:none;
     font-size:17px;
@@ -74,6 +89,8 @@ ul li {
     user-select:none;
     cursor:pointer;
     position:relative;
+    
+
 }
 
 ul li::before
@@ -90,7 +107,7 @@ ul li::before
     left:8px;
 }
 ul li.checked{
-    color:#555;
+    color:coral;
 text-decoration:line-through;
 }
 ul li.checked::before{

@@ -5,6 +5,8 @@
     padding:0;
 
 }
+
+
     nav {
       background-color: coral;
       padding: 1.5rem;
@@ -33,7 +35,8 @@
     }
 
     .container a:hover {
-      background-color: #ddd;
+      background-color: white;
+      color:coral;
       
     }
     #logout{
@@ -71,3 +74,9 @@ padding:1rem 1.5rem;
     align-items: center;
 }
 }
+.active {
+  background-color: white;
+      color: coral !important;
+      
+}
+

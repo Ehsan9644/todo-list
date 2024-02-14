@@ -1,28 +1,40 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Sign In</title>
+    <link rel="stylesheet" href="../css/sign-in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-
-    <div id="signIn-page"></div>
-
-    <script>
-        // Use fetch to load content from content.html
-        fetch('../components/sign-in.html')
-            .then(response => response.text())
-            .then(html => {
-                // Inject the content into the contentContainer
-                document.getElementById('signIn-page').innerHTML = html;
-            })
-            .catch(error => console.error('Error fetching content:', error));
-    </script>
+    <div class="sign-in">
+        <div class="top">
+            <i class="fa-solid fa-list fa-5x"></i>
+            <h1>Todo List</h1>
+        </div>
+        <form id="signin-form">
+            <div>
+                <h3 style="text-align:center; color: #0056b3;">Welcome Back!</h3>
+            </div>
+            <div class="form-group">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username:</label>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password:</label>
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    <script src="./js/signin.js"></script>
 </body>
 
 </html>
