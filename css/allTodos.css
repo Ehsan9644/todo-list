@@ -8,6 +8,8 @@
     margin-right:5rem;
 
 }
+
+
 .input input{
    
     border:none;
@@ -17,6 +19,7 @@
     font weight:1rem;
     background: #edeef0;
     border-radius:3rem;
+   
     
     
 }
@@ -29,6 +32,7 @@
     font-size:1rem;
     cursor:pointer;
     border-radius:40px;
+
 }
 
 .input button:hover{
@@ -60,8 +64,18 @@ background:#ff5530;
   padding: 8px;
   border: 2px solid coral ;
   border-radius: 8px;
-  width: 200px; /* Adjust width as needed */
+  width: 200px; 
   margin-top:3rem;
   margin-bottom:3rem;
   margin-right:1rem;
+}
+#loadTodosButton {
+    border: none;
+    outline: none;
+    padding: 1rem 2rem;
+    background: #ff5945;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 40px;
 }

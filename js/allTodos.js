@@ -1,4 +1,4 @@
-fetch("https://dummyjson.com/todos")
+const todosData = fetch("https://dummyjson.com/todos")
   .then((response) => response.json())
   .then((data) => {
     const todosData = data.todos;
@@ -74,6 +74,7 @@ document
         }
       })
       .then((data) => {
+        
         displayTodos(data.todos);
       })
       .catch((error) => {
@@ -83,6 +84,7 @@ document
   });
 
 function displayTodos(todos) {
+
   const todoContainer = document.getElementById("todo-container");
   todoContainer.innerHTML = "";
   const todoElements = todos.map((todo) => {
