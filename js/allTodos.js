@@ -2,7 +2,7 @@ const todosData = fetch("https://dummyjson.com/todos")
   .then((response) => response.json())
   .then((data) => {
     const todosData = data.todos;
-    const todoContainer = document.getElementById("todo-container");
+    const todoContainer = document.getElementById("todo-container-1");
 
     const todoItems = todosData.map((todo) => {
       const todoItemDiv = document.createElement("div");
@@ -74,7 +74,6 @@ document
         }
       })
       .then((data) => {
-        
         displayTodos(data.todos);
       })
       .catch((error) => {
@@ -84,8 +83,9 @@ document
   });
 
 function displayTodos(todos) {
-
-  const todoContainer = document.getElementById("todo-container");
+  const todoContainer1 = document.getElementById("todo-container-1");
+  const todoContainer = document.getElementById("todo-container-2");
+  todoContainer1.style.display = "none";
   todoContainer.innerHTML = "";
   const todoElements = todos.map((todo) => {
     const todoItemDiv = document.createElement("div");
