@@ -41,7 +41,8 @@ fetch("https://dummyjson.com/todos/add", {
       todos.unshift(todo);
 
       saveData();
-      
+
+      renderTodo(todo);
 
       todoInput.value = "";
       alert("Your TODO Added succesfully");
@@ -52,7 +53,11 @@ fetch("https://dummyjson.com/todos/add", {
     function saveData() {
       localStorage.setItem("todos", JSON.stringify(todos));
     }
- 
+ function renderTodo(todo) {
+   let li = document.createElement("li");
+   li.textContent = todo.todo;
+   listContainer.prepend(li); // Add the new todo to the beginning of the list
+ }
   })
   
   .catch((error) => {
