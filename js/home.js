@@ -2,7 +2,7 @@ const userId = localStorage.getItem("userId");
 const listContainer = document.getElementById("list-container");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
-
+console.log(localStorage.userImage);
 function showTasks() {
   listContainer.innerHTML = "";
   todos.forEach((todo) => {

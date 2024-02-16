@@ -80,3 +80,11 @@ padding:1rem 1.5rem;
       
 }
 
+#user-image{
+ 
+  margin-right:7rem;
+  position: absolute;
+  right: 0;
+  top: 7%; 
+  transform: translateY(-50%); 
+}

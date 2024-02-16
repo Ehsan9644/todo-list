@@ -1,5 +1,7 @@
-document.getElementById("signin-form").addEventListener("submit", async function (event) {
-    event.preventDefault(); 
+document
+  .getElementById("signin-form")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -16,11 +18,18 @@ document.getElementById("signin-form").addEventListener("submit", async function
       if (response.ok) {
         const data = await response.json();
 
-        const userId =data.id;
+        const userId = data.id;
+        const UserImage = data.image;
+        const UserFirstName = data.firstName;
+        const UserLastName = data.lastName;
 
         console.log("User ID:", userId);
         localStorage.setItem("userId", userId);
-        window.location.href = "../components/home.html"; 
+        localStorage.setItem("userImage", UserImage);
+        localStorage.setItem("userFirstName", UserFirstName);
+        localStorage.setItem("userLastName", UserLastName);
+        localStorage.setItem("userData", JSON.stringify(data));
+        window.location.href = "../components/home.html";
       } else {
         alert("Invalid username or password");
       }
