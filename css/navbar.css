@@ -54,7 +54,7 @@ background:#ff5530;
 padding:1rem 1.5rem;
 } 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 610px) {
   .nav-links {
     display: flex;
     flex-direction: column;
@@ -63,17 +63,23 @@ padding:1rem 1.5rem;
   }
 
   .container a {
-    margin: 0.5rem;
-    padding: 7px 8px;
+    margin: -0.01rem;
+   
 }
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+#dp{
+   display:none;
 }
+}
+
+
+
 .active {
   background-color: white;
       color: coral !important;
@@ -85,7 +91,7 @@ padding:1rem 1.5rem;
   margin-right:7rem;
   position: absolute;
   right: 0;
-  top: 7%; 
+  top: 3.5rem; 
   transform: translateY(-50%); 
 }
 #dp{

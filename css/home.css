@@ -64,11 +64,12 @@ color:black;
 }
 
 .edit-btn{
+  position:absolute;
+  right:1rem;
   margin-top:-5px;
   background-color:white;
   color:coral;
-  float:right;
-  margin-right:2rem;
+  margin-right:1.3rem;
   padding:10px;
   border: 0px  white;
   border-radius:10px;
@@ -105,4 +106,9 @@ color:white;
 
 .editbtn:hover {
  color:black;
+}
+
+
+@media screen and (max-width: 500px) {
+ 
 }

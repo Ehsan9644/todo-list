@@ -79,3 +79,23 @@ background:#ff5530;
     cursor: pointer;
     border-radius: 40px;
 }
+
+@media screen and (max-width: 625px) {
+ #loadTodosButton {
+   margin-top:1rem;
+    padding: 1rem 2rem;
+    
+    margin-left:8rem;
+    
+}
+.input{
+    
+    margin:1rem;
+
+}
+#userSelect {
+  
+ 
+  margin-right:-5rem;
+}
+}

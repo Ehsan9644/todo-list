@@ -59,15 +59,13 @@ function renderTodo(todo) {
   });
 
   //  delete button
-  // Create the span element for the cross
   const span = document.createElement("span");
   span.innerHTML = "\u00d7";
   span.classList.add("close");
   li.appendChild(span);
 
-  // Add event listener to the span for deletion
   span.addEventListener("click", function (e) {
-    e.stopPropagation(); // Prevent the click event from propagating to the parent elements
+    e.stopPropagation(); 
     handleDelete(todo, li);
   });
 
@@ -162,10 +160,10 @@ function handleDelete(todo, li) {
           }
         }
       })
-      .finally(() => {
+      
         deletePopup.style.display = "none";
         confirmBtn.removeEventListener("click", handleConfirm);
-      });
+      
   });
 
   cancelBtn.addEventListener("click", function handleCancel() {

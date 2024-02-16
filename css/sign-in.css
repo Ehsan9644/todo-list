@@ -83,6 +83,12 @@ button:hover {
 
 @media only screen and (max-width: 600px) {
     form {
-        max-width: none;
+        /* max-width: none; */
+        width:18rem;
+       
     }
+    button {
+    
+    margin-left:7rem;
+}
 }
