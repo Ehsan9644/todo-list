@@ -11,28 +11,27 @@ function showTasks() {
 }
 
 function renderTodo(todo) {
+  let li = document.createElement("li");
+  // li.textContent = todo.todo;
+  let todoText = document.createElement("div");
+  todoText.textContent = todo.todo;
+  todoText.classList.add("todo-text");
+  li.appendChild(todoText);
 
- let li = document.createElement("li");
-// li.textContent = todo.todo;
-let todoText = document.createElement("div");
-todoText.textContent = todo.todo;
-todoText.classList.add("todo-text");
-li.appendChild(todoText);
+  //edit button
+  let editBtn = document.createElement("button");
+  editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+  editBtn.classList.add("edit-btn");
 
-//edit button
- let editBtn = document.createElement("button");
- editBtn.innerHTML = '<i class="fas fa-edit"></i>';
- editBtn.classList.add("edit-btn");
- 
- editBtn.addEventListener("click", function (e) {
-   e.stopPropagation(); 
-   handleEdit(todo, li); 
- });
+  editBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    handleEdit(todo, li);
+  });
 
   if (todo.completed) {
     li.classList.add("checked");
   }
-// todo status changing function
+  // todo status changing function
   li.addEventListener("click", function () {
     //edit todo status API
     fetch("https://dummyjson.com/todos/1", {
@@ -59,40 +58,22 @@ li.appendChild(todoText);
       });
   });
 
-  
   //  delete button
-  let span = document.createElement("span");
+  // Create the span element for the cross
+  const span = document.createElement("span");
   span.innerHTML = "\u00d7";
-
-  //delete todo function
-  span.addEventListener("click", function (e) {
-    //delete api
-    //if the status is 200 then the code of delete function will work
-    fetch("https://dummyjson.com/todos/8", {
-      method: "DELETE",
-    })
-      .then((response) => {
-        return response;
-      })
-      .then((data) => {
-        console.log(data);
-        const status = data.status;
-        console.log(" delete API Status:" + status);
-        if (status == 200) {
-          e.stopPropagation();
-          const index = todos.indexOf(todo);
-          if (index > -1) {
-            todos.splice(index, 1);
-            li.remove();
-            //status of the
-            saveData();
-          }
-        }
-      });
-  });
- li.appendChild(editBtn);
+  span.classList.add("close");
   li.appendChild(span);
- 
+
+  // Add event listener to the span for deletion
+  span.addEventListener("click", function (e) {
+    e.stopPropagation(); // Prevent the click event from propagating to the parent elements
+    handleDelete(todo, li);
+  });
+
+  li.appendChild(editBtn);
+  li.appendChild(span);
+
   listContainer.appendChild(li);
 }
 
@@ -127,24 +108,68 @@ if (userId) {
   console.log("User ID not found in localStorage");
 }
 
-
 function handleEdit(todo, li) {
   const editPopup = document.getElementById("editPopup");
   const editedTodoInput = document.getElementById("editedTodo");
   editedTodoInput.value = todo.todo;
   editPopup.style.display = "block";
-  document.getElementById("saveBtn").addEventListener("click", function handleSave() {
-    const editedTodo = editedTodoInput.value;
-    todo.todo = editedTodo;
-    saveData();
-    li.querySelector(".todo-text").textContent = editedTodo;
-    editPopup.style.display = "none";
-    document.getElementById("saveBtn").removeEventListener("click", handleSave);
-  });
-  document.getElementById("cancelBtn").addEventListener("click", function handleCancel () {
-    editPopup.style.display = "none";
-        document.getElementById("cancelBtn").removeEventListener("click", handleCancel);
-  });
+  document
+    .getElementById("saveBtn")
+    .addEventListener("click", function handleSave() {
+      const editedTodo = editedTodoInput.value;
+      todo.todo = editedTodo;
+      saveData();
+      li.querySelector(".todo-text").textContent = editedTodo;
+      editPopup.style.display = "none";
+      document
+        .getElementById("saveBtn")
+        .removeEventListener("click", handleSave);
+    });
+  document
+    .getElementById("cancelBtn")
+    .addEventListener("click", function handleCancel() {
+      editPopup.style.display = "none";
+      document
+        .getElementById("cancelBtn")
+        .removeEventListener("click", handleCancel);
+    });
 }
 
+function handleDelete(todo, li) {
+  const deletePopup = document.getElementById("deletePopup");
+  deletePopup.style.display = "block";
 
+  const confirmBtn = document.getElementById("confirmDeleteBtn");
+  const cancelBtn = document.getElementById("cancelDeleteBtn");
+
+  confirmBtn.addEventListener("click", function handleConfirm() {
+    fetch("https://dummyjson.com/todos/8", {
+      method: "DELETE",
+    })
+      .then((response) => {
+        return response;
+      })
+      .then((data) => {
+        console.log(data);
+        const status = data.status;
+        console.log(" delete API Status:" + status);
+        if (status == 200) {
+          const index = todos.indexOf(todo);
+          if (index > -1) {
+            todos.splice(index, 1);
+            li.remove();
+            saveData();
+          }
+        }
+      })
+      .finally(() => {
+        deletePopup.style.display = "none";
+        confirmBtn.removeEventListener("click", handleConfirm);
+      });
+  });
+
+  cancelBtn.addEventListener("click", function handleCancel() {
+    deletePopup.style.display = "none";
+    cancelBtn.removeEventListener("click", handleCancel);
+  });
+}

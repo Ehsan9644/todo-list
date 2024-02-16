@@ -88,3 +88,8 @@ padding:1rem 1.5rem;
   top: 7%; 
   transform: translateY(-50%); 
 }
+#dp{
+   border: 2px solid white;
+ border-radius:80px;
+ background-color:white;
+}

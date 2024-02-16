@@ -47,7 +47,7 @@ getUserImage.innerHTML = `
 <div>
 <div>
 
-<img src="${localStorage.userImage}" alt="user-image" width="50px">
+<img src="${localStorage.userImage}" alt="user-image" width="40px" id="dp">
 </div>
 `;
 
