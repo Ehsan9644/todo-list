@@ -32,7 +32,7 @@ li.appendChild(todoText);
   if (todo.completed) {
     li.classList.add("checked");
   }
-
+// todo status changing function
   li.addEventListener("click", function () {
     //edit todo status API
     fetch("https://dummyjson.com/todos/1", {
@@ -64,9 +64,10 @@ li.appendChild(todoText);
   let span = document.createElement("span");
   span.innerHTML = "\u00d7";
 
-  //event listener to delete todo
+  //delete todo function
   span.addEventListener("click", function (e) {
     //delete api
+    //if the status is 200 then the code of delete function will work
     fetch("https://dummyjson.com/todos/8", {
       method: "DELETE",
     })
@@ -109,7 +110,7 @@ if (userId) {
     .then((data) => {
       const todosDataFromAPI = data.todos;
       console.log(todosDataFromAPI);
-      // Filter out todos from the API that are already present in local storage
+      // Filter funtion that filter out todos from the API that are already present in local storage to prevent make copies of todo
       const filteredTodos = todosDataFromAPI.filter((todoFromAPI) => {
         return !todos.find((todo) => todo.todo === todoFromAPI.todo);
       });
