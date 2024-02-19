@@ -1,3 +1,9 @@
+window.addEventListener("DOMContentLoaded", () => {
+  const navbarContainer = document.getElementById("navbarContainer");
+  fetch("navbar.html")
+    .then((response) => response.text())
+    .then((html) => {
+      navbarContainer.innerHTML = html;
 const homeLink = document.getElementById("home-link");
 const addTodoLink = document.getElementById("add-todo-link");
 const allTodosLink = document.getElementById("all-todos-link");
@@ -55,4 +61,7 @@ getUserImage.innerHTML = `
 document.getElementById("logout").addEventListener("click", function () {
   localStorage.removeItem("token");
   window.location.href = "../components/sign-in.html";
+});
+      
+    });
 });

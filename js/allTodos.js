@@ -4,7 +4,7 @@ const todosData = fetch("https://dummyjson.com/todos")
     const todosData = data.todos;
     const todoContainer = document.getElementById("todo-container-1");
 
-    const todoItems = todosData.map((todo) => {
+     todosData.forEach((todo) => {
       const todoItemDiv = document.createElement("div");
       todoItemDiv.classList.add("todo-item");
 
@@ -14,12 +14,13 @@ const todosData = fetch("https://dummyjson.com/todos")
       todoTextBox.readOnly = true;
 
       todoItemDiv.appendChild(todoTextBox);
-      return todoItemDiv;
+      todoContainer.appendChild(todoItemDiv);
+      // return todoItemDiv;
     });
 
-    todoItems.forEach((todoItem) => {
-      todoContainer.appendChild(todoItem);
-    });
+    // todoItems.forEach((todoItem) => {
+    //   todoContainer.appendChild(todoItem);
+    // });
   })
   .catch((error) => {
     console.error("Error fetching todos:", error);
@@ -39,16 +40,17 @@ fetch("https://dummyjson.com/users")
   .then((data) => {
     const userSelect = document.getElementById("userSelect");
 
-    const options = data.users.map((user) => {
+    data.users.forEach((user) => {
       const option = document.createElement("option");
       option.value = user.id;
       option.textContent = user.firstName + " " + user.lastName;
-      return option;
+      userSelect.appendChild(option);
+      // return option;
     });
 
-    options.forEach((option) => {
-      userSelect.appendChild(option);
-    });
+    // options.forEach((option) => {
+    //   userSelect.appendChild(option);
+    // });
   })
   .catch((error) => {
     console.error("Error fetching users:", error);
