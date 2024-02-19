@@ -33,8 +33,10 @@ function renderTodo(todo) {
   }
   // todo status changing function
   li.addEventListener("click", function () {
+    const todoid=todo.id;
+   
     //edit todo status API
-    fetch("https://dummyjson.com/todos/1", {
+    fetch(`https://dummyjson.com/todos/${todoid}`, {
       method: "PUT" /* or PATCH */,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -65,7 +67,7 @@ function renderTodo(todo) {
   li.appendChild(span);
 
   span.addEventListener("click", function (e) {
-    e.stopPropagation(); 
+    e.stopPropagation();
     handleDelete(todo, li);
   });
 
@@ -110,10 +112,27 @@ function handleEdit(todo, li) {
   const editPopup = document.getElementById("editPopup");
   const editedTodoInput = document.getElementById("editedTodo");
   editedTodoInput.value = todo.todo;
+  const todoId = todo.id;
   editPopup.style.display = "block";
   document
     .getElementById("saveBtn")
     .addEventListener("click", function handleSave() {
+
+fetch(`https://dummyjson.com/todos/${todoId}`, {
+  method: "PUT" /* or PATCH */,
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    completed: false,
+  }),
+})
+  .then((response) => {
+    return response;
+  })
+  .then((data) => {
+    console.log(data);
+    const status = data.status;
+    console.log("Update API Status:" + status);
+    if (status == 200) {
       const editedTodo = editedTodoInput.value;
       todo.todo = editedTodo;
       saveData();
@@ -122,6 +141,10 @@ function handleEdit(todo, li) {
       document
         .getElementById("saveBtn")
         .removeEventListener("click", handleSave);
+    } else {
+      alert("Bad Request");
+    }
+  });
     });
   document
     .getElementById("cancelBtn")
@@ -136,12 +159,14 @@ function handleEdit(todo, li) {
 function handleDelete(todo, li) {
   const deletePopup = document.getElementById("deletePopup");
   deletePopup.style.display = "block";
-
+  const todoId=todo.id;
+console.log("id "+todoId);
+console.log(todo);
   const confirmBtn = document.getElementById("confirmDeleteBtn");
   const cancelBtn = document.getElementById("cancelDeleteBtn");
 
   confirmBtn.addEventListener("click", function handleConfirm() {
-    fetch("https://dummyjson.com/todos/8", {
+    fetch(`https://dummyjson.com/todos/${todoId}`, {
       method: "DELETE",
     })
       .then((response) => {
